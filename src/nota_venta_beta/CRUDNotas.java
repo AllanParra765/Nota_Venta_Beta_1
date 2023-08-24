@@ -32,7 +32,7 @@ public class CRUDNotas {
         ConexionMySQL sql = new ConexionMySQL();
         Connection con = sql.conectarMySQL();
         
-        String query = "INSERT INTO Notas(Folio, NombreCliente, KilosRopa, Precio, Total, Comentario, FechaEntrega) VALUES(?,?,?,?,?,?,?)";
+        String query = "INSERT INTO Notas3(Folio, NombreCliente, KilosRopa, Precio, Total, Comentario, FechaEntrega) VALUES(?,?,?,?,?,?,?)";
         //INSERT INTO `Notas3` (`Id_Nota`, `Folio`, `NombreCliente`, `KilosRopa`, `Precio`, `Total`, `Comentario`, `FechaLlegada`, `FechaEntrega`) VALUES (NULL, '12ddd', 'Lin', '12.90', '15.98', '1112.89', '2222222222', current_timestamp(), '2022-10-31 10:01:40');
         try {
             PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
@@ -72,15 +72,15 @@ public class CRUDNotas {
      
         if (buscar.contains("F_") ) {
           //  System.out.println("entre en folio");
-            query= "SELECT * FROM Notas WHERE Entregado = 0  and Eliminado = 0 and Folio LIKE '"+buscar+"%'";
+            query= "SELECT * FROM Notas3 WHERE Entregado = 0  and Eliminado = 0 and Folio LIKE '"+buscar+"%'";
             //query= "SELECT * FROM Notas3 WHERE Entregado = 0  and Eliminado = 0 and Folio LIKE '?%'";
         }else{
                 if (buscar.length()==0 ) {
-                query= "SELECT * FROM `Notas` WHERE Entregado = 0  and Eliminado = 0";
+                query= "SELECT * FROM `Notas3` WHERE Entregado = 0  and Eliminado = 0";
                // query= "SELECT * FROM `Notas3` WHERE `FechaLlegada`='" +fecha+"' and Entregado = 0 ";
                 }else{
                 System.out.println("buscar nombre");
-                query= "SELECT * FROM Notas WHERE NombreCliente LIKE '"+buscar+"%' and `Entregado` = 0  and Eliminado = 0";
+                query= "SELECT * FROM Notas3 WHERE NombreCliente LIKE '"+buscar+"%' and `Entregado` = 0  and Eliminado = 0";
                //query= "SELECT * FROM Notas3 WHERE NombreCliente LIKE '?%' and `Entregado` = 0  and Eliminado = 0";
              }
                 
@@ -115,7 +115,7 @@ public class CRUDNotas {
          boolean resp = false;
            ConexionMySQL sql = new ConexionMySQL();
         Connection con = sql.conectarMySQL();
-        String query = "UPDATE `Notas` SET`Eliminado`=1 WHERE Folio=? And Servicios =? ";//"DELETE FROM articulos WHERE ID=?";//UPDATE `Notas3` SET`Entregado`=1,`Eliminado`=1 WHERE `Folio`="F_Licha08"
+        String query = "UPDATE `Notas3` SET`Eliminado`=1 WHERE Folio=? And Servicios =? ";//"DELETE FROM articulos WHERE ID=?";//UPDATE `Notas3` SET`Entregado`=1,`Eliminado`=1 WHERE `Folio`="F_Licha08"
         PreparedStatement statement = con.prepareStatement(query);
 	statement.setString(1, folio);
         statement.setString(2, servicios);
@@ -132,7 +132,7 @@ public class CRUDNotas {
          boolean resp = false;
            ConexionMySQL sql = new ConexionMySQL();
         Connection con = sql.conectarMySQL();
-        String query = "UPDATE `Notas` SET`Entregado`=1 WHERE Folio=?";//"DELETE FROM articulos WHERE ID=?";//UPDATE `Notas3` SET`Entregado`=1,`Eliminado`=1 WHERE `Folio`="F_Licha08"
+        String query = "UPDATE `Notas3` SET`Entregado`=1 WHERE Folio=?";//"DELETE FROM articulos WHERE ID=?";//UPDATE `Notas3` SET`Entregado`=1,`Eliminado`=1 WHERE `Folio`="F_Licha08"
         PreparedStatement statement = con.prepareStatement(query);
 	statement.setString(1, Entregado);
 
@@ -154,7 +154,7 @@ public class CRUDNotas {
         //INSERT INTO `Notas3` (`Id_Nota`, `Folio`, `NombreCliente`, `KilosRopa`, `Precio`, `Total`, `Comentario`, `FechaLlegada`, `FechaEntrega`, `Entregado`, `Eliminado`, `Servicios`) VALUES (NULL, 'F_Sofia001', 'Yulay', '12.90', '15.98', '1112.89', 'hdbhscbdbcdscbjhsbchjhcdbjds', '2022-12-28', '2022-12-29', '0', '0', 'Colchoneta');
         try {
             for (int i = 0; i < lista.size(); i++) {
-                 String query = "INSERT INTO Notas(Folio, NombreCliente, KilosRopa, Precio, Total, Comentario, FechaEntrega, Servicios) VALUES(?,?,?,?,?,?,?,?)";
+                 String query = "INSERT INTO Notas3(Folio, NombreCliente, KilosRopa, Precio, Total, Comentario, FechaEntrega, Servicios) VALUES(?,?,?,?,?,?,?,?)";
        
                   System.out.println("entre en insert i vale "+ i + "y lista "+lista.size() );
             PreparedStatement ps = (PreparedStatement) con.prepareStatement(query);
